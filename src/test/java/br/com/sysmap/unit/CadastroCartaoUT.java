@@ -2,6 +2,7 @@ package br.com.sysmap.unit;
 
 import static io.restassured.RestAssured.given;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -51,6 +52,7 @@ public class CadastroCartaoUT {
 		.when()
 			.post()
 		.then()
+			.body("message", Matchers.equalTo("Um cartão com esse número já existe!"))
 			.statusCode(HttpStatus.UNPROCESSABLE_ENTITY.value());
 	}
 	
