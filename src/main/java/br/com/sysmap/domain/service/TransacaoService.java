@@ -9,7 +9,11 @@ import br.com.sysmap.api.controller.dto.TransacaoDTO;
  */
 public interface TransacaoService {
 
+	/**
+	 * Método responsável por realizar uma transação.
+	 *
+	 * @param transacaoDTO {@link TransacaoDTO}: a transação a ser realizada.
+	 */
 	String performTransaction(final TransacaoDTO transacaoDTO);
 
-	
 }

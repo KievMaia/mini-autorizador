@@ -41,8 +41,14 @@ public class CartaoController {
 				.body(this.cartaoService.salvar(cartaoDTO));	
 	}
 	
+	/**
+	 * Método da API que consulta o saldo de um cartão em uma estrutura JSON.
+	 *
+	 * @param numeroCartao {@link Long}: o número do cartão a ser consultado.
+	 * @return {@link ResponseEntity<BigDecimal>} status e corpo da execução.
+	 */
 	@GetMapping(path = "/{numeroCartao}")
-	public ResponseEntity<BigDecimal> getSaldoCartao(@PathVariable Long numeroCartao) throws Exception{
+	public ResponseEntity<BigDecimal> getSaldoCartao(@PathVariable final Long numeroCartao) throws Exception{
 		return ResponseEntity.ok(cartaoService.getSaldoCartao(numeroCartao));
 	}
 }
