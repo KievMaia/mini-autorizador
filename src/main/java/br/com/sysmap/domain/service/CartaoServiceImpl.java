@@ -1,5 +1,6 @@
 package br.com.sysmap.domain.service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sysmap.api.controller.dto.CartaoDTO;
 import br.com.sysmap.domain.exception.EntidadeJaExisteException;
+import br.com.sysmap.domain.exception.EntidadeNaoEncontradaException;
 import br.com.sysmap.domain.model.Cartao;
 import br.com.sysmap.domain.repository.CartaoRepository;
 import br.com.sysmap.domain.util.CartaoObjectUtil;
@@ -40,4 +42,11 @@ public class CartaoServiceImpl implements CartaoService{
 		return cartaoRepository.findByNumeroCartao(numeroCartao);
 	}
 
+	@Override
+	public BigDecimal getSaldoCartao(final Long numeroCartao)  {
+		Cartao cartao = findByNumeroCartao(numeroCartao)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Um cartão com este número não existe!"));
+
+		return cartao.getSaldo();
+	}
 }

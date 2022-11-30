@@ -21,6 +21,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 
+	@ExceptionHandler(EntidadeNaoEncontradaException.class)
+	public ResponseEntity<?> tratarEntidadeNaoEncontradaException(final EntidadeNaoEncontradaException ex,
+			WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	}
+	
 	@ExceptionHandler(EntidadeJaExisteException.class)
 	public ResponseEntity<?> tratarEntidadeJaExisteException(final EntidadeJaExisteException ex, WebRequest request) {
 		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);

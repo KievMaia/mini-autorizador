@@ -1,5 +1,7 @@
 package br.com.sysmap.domain.service;
 
+import java.math.BigDecimal;
+
 import br.com.sysmap.api.controller.dto.CartaoDTO;
 
 /**
@@ -15,5 +17,12 @@ public interface CartaoService {
 	 * @param cartaoDTO {@link CartaoDTO}: o cartão a ser inserido.
 	 */
 	CartaoDTO salvar(final CartaoDTO cartaoDTO);
+
+	/**
+	 * Método responsável por retornar o saldo do cartão.
+	 *
+	 * @param numeroCartao {@link Long}: o número do cartão.
+	 */
+	BigDecimal getSaldoCartao(final Long numeroCartao);
 
 }
