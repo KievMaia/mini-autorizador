@@ -1,39 +1,31 @@
-package br.com.sysmap.domain.model;
+package br.com.sysmap.api.controller.dto;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Representa o Cartão.
- *
- * @author Kiev Maia.
+ * O objeto de transferência que representa o cartão.
+ * 
+ * @author Kiev Maia
  *
  */
-@Entity
-public class Cartao {
+public class CartaoDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long id;
 
-	@Column(nullable = false)
 	private Long numeroCartao;
 
-	@Column(nullable = false)
 	private String senha;
 
+	@JsonIgnore
 	private BigDecimal saldo;
-	
+
 	/**
-	 * Default Construtor
+	 * Default constructor
 	 */
-	public Cartao() {
+	public CartaoDTO() {
 	}
 
 	/**
@@ -101,25 +93,8 @@ public class Cartao {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cartao other = (Cartao) obj;
-		return Objects.equals(id, other.id);
-	}
-
-	@Override
 	public String toString() {
-		return "Cartao [id=" + id + ", numeroCartao=" + numeroCartao + ", senha=" + senha + ", saldo=" + saldo + "]";
+		return "CartaoDTO [id=" + id + ", numeroCartao=" + numeroCartao + ", senha=" + senha + ", saldo=" + saldo + "]";
 	}
 
 }
