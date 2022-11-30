@@ -31,6 +31,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> tratarEntidadeJaExisteException(final EntidadeJaExisteException ex, WebRequest request) {
 		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
 	}
+	
+	@ExceptionHandler(TransacaoInvalidaException.class)
+	public ResponseEntity<?> tratarTransacaoInvalidaException(final TransacaoInvalidaException ex, WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY,
+				request);
+	}
 
 	@Override
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,

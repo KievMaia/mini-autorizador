@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sysmap.api.controller.dto.CartaoDTO;
-import br.com.sysmap.domain.service.CartaoServiceImpl;
+import br.com.sysmap.domain.service.impl.CartaoServiceImpl;
 
 /**
  * Classe que contém os endpoints do da unidade Cartão.

@@ -27,6 +27,17 @@ public class CartaoObjectUtil {
 			return cartao;
 		};
 	}
+	
+	public static final Function<CartaoDTO, Cartao> toEntity() {
+		return cartaoDTO -> {
+			final var cartao = new Cartao();
+			cartao.setId(cartaoDTO.getId());
+			cartao.setNumeroCartao(cartaoDTO.getNumeroCartao());
+			cartao.setSenha(cartaoDTO.getSenha());
+			cartao.setSaldo(cartaoDTO.getSaldo());
+			return cartao;
+		};
+	}
 
 	public static final Function<Cartao, CartaoDTO> toDto() {
 		return entity -> {

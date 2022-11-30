@@ -1,4 +1,4 @@
-package br.com.sysmap.domain.service;
+package br.com.sysmap.domain.service.impl;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -12,6 +12,7 @@ import br.com.sysmap.domain.exception.EntidadeJaExisteException;
 import br.com.sysmap.domain.exception.EntidadeNaoEncontradaException;
 import br.com.sysmap.domain.model.Cartao;
 import br.com.sysmap.domain.repository.CartaoRepository;
+import br.com.sysmap.domain.service.CartaoService;
 import br.com.sysmap.domain.util.CartaoObjectUtil;
 
 /**
@@ -38,7 +39,7 @@ public class CartaoServiceImpl implements CartaoService{
 		return CartaoObjectUtil.toDto().apply(cartaoRepository.save(cartao));
 	}
 
-	private Optional<Cartao> findByNumeroCartao(final Long numeroCartao) {
+	public Optional<Cartao> findByNumeroCartao(final Long numeroCartao) {
 		return cartaoRepository.findByNumeroCartao(numeroCartao);
 	}
 
@@ -48,5 +49,11 @@ public class CartaoServiceImpl implements CartaoService{
 				.orElseThrow(() -> new EntidadeNaoEncontradaException("Um cartão com este número não existe!"));
 
 		return cartao.getSaldo();
+	}
+	
+	@Override
+	public void atualizar(CartaoDTO cartaoDTO) {
+		Cartao cartao = CartaoObjectUtil.toEntity().apply(cartaoDTO);
+		this.cartaoRepository.save(cartao);
 	}
 }

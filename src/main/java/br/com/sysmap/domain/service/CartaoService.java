@@ -25,4 +25,11 @@ public interface CartaoService {
 	 */
 	BigDecimal getSaldoCartao(final Long numeroCartao);
 
+	/**
+	 * Método responsável por atualizar as informações do saldo do cartão.
+	 *
+	 * @param cartaoDTO {@link CartaoDTO}: o cartão a ser atualizado.
+	 */
+	void atualizar(final CartaoDTO cartaoDTO);
+
 }
