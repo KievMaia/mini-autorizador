@@ -16,7 +16,7 @@ import br.com.sysmap.domain.service.impl.CartaoServiceImpl;
 import br.com.sysmap.domain.service.impl.TransacaoServiceImpl;
 
 @SpringBootTest
-public class TransacaoIntegrationTests {
+class TransacaoIntegrationTests {
 
 	@Autowired
 	TransacaoServiceImpl transacaoServiceImpl;
