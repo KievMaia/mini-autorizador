@@ -21,7 +21,7 @@ import br.com.sysmap.domain.util.CartaoObjectUtil;
  *
  */
 @Service
-public class TransacaoServiceImpl implements TransacaoService{
+public class TransacaoServiceImpl implements TransacaoService {
 
 	@Autowired
 	CartaoServiceImpl cartaoService;
@@ -29,12 +29,10 @@ public class TransacaoServiceImpl implements TransacaoService{
 	@Override
 	public String performTransaction(final TransacaoDTO transacaoDTO) {
 		Optional<Cartao> cartaoRecuperado = cartaoService.findByNumeroCartao(transacaoDTO.getNumeroCartao());
-		
+
 		synchronized (this) {
 			this.validadeTransaction(transacaoDTO);
-			if (cartaoRecuperado.isPresent()) {
-				this.subtracaoSaldo(transacaoDTO, cartaoRecuperado);
-			}
+			this.subtracaoSaldo(transacaoDTO, cartaoRecuperado);
 		}
 		return "OK";
 	}

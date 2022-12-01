@@ -1,7 +1,5 @@
 package br.com.sysmap.domain.exception;
 
-import java.time.LocalDateTime;
-
 /**
  * O objeto que representa o corpo da resposta das exceções lançadas.
  * 
@@ -10,7 +8,7 @@ import java.time.LocalDateTime;
  */
 public class CorpoException {
 
-	private LocalDateTime dataHora;
+	private String dataHora;
 	private String message;
 
 	private CorpoException(final Builder builder) {
@@ -31,7 +29,7 @@ public class CorpoException {
 	 * Builder do objeto CorpoException.
 	 */
 	public static final class Builder {
-		private LocalDateTime dataHora;
+		private String dataHora;
 		private String message;
 
 		/**
@@ -40,7 +38,7 @@ public class CorpoException {
 		private Builder() {
 		}
 
-		public Builder withDataHora(final LocalDateTime dataHora) {
+		public Builder withDataHora(final String dataHora) {
 			this.dataHora = dataHora;
 			return this;
 		}
@@ -58,17 +56,17 @@ public class CorpoException {
 
 	/**
 	 * 
-	 * @return {@link LocalDateTime}: data e hora do lançamento da exceção.
+	 * @return {@link String}: data e hora do lançamento da exceção.
 	 */
-	public LocalDateTime getDataHora() {
+	public String getDataHora() {
 		return dataHora;
 	}
 
 	/**
 	 * 
-	 * @param {@link LocalDateTime}: data e hora do lançamento da exceção.
+	 * @param {@link String}: data e hora do lançamento da exceção.
 	 */
-	public void setDataHora(LocalDateTime dataHora) {
+	public void setDataHora(String dataHora) {
 		this.dataHora = dataHora;
 	}
 

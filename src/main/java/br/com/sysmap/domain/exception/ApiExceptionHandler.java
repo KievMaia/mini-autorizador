@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.sysmap.domain.util.DateUtils;
+
 /**
  * Classe que responsável por tratar exceções globais em nível de controlador.
  *
@@ -43,12 +45,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			HttpStatusCode statusCode, WebRequest request) {
 		if (body == null) {
 			body = CorpoException.builder()
-					.withDataHora(LocalDateTime.now())
+					.withDataHora(DateUtils.convertLocalDateTimeToSring(LocalDateTime.now()))
 					.withMessage(statusCode.toString())
 					.build();
 		} else if (body instanceof String) {
 			body = CorpoException.builder()
-					.withDataHora(LocalDateTime.now())
+					.withDataHora(DateUtils.convertLocalDateTimeToSring(LocalDateTime.now()))
 					.withMessage((String) body).build();
 		}
 		return super.handleExceptionInternal(ex, body, headers, statusCode, request);
