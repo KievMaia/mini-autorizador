@@ -25,7 +25,7 @@ import br.com.sysmap.domain.util.CartaoObjectUtil;
 public class CartaoServiceImpl implements CartaoService{
 
 	@Autowired
-	CartaoRepository cartaoRepository;
+	private CartaoRepository cartaoRepository;
 
 	@Override
 	@Transactional

@@ -45,14 +45,16 @@ public class TransacaoServiceImpl implements TransacaoService {
 
 	private void validadeTransaction(final TransacaoDTO transacaoDTO) {
 		Optional<Cartao> cartao = cartaoService.findByNumeroCartao(transacaoDTO.getNumeroCartao());
-		if (cartao.isEmpty()) {
-			throw new TransacaoInvalidaException(ValidationTransactionMessages.CARTAO_INEXISTENTE.toString());
-		}
-		if (!transacaoDTO.getSenhaCartao().equals(cartao.get().getSenha())) {
-			throw new TransacaoInvalidaException(ValidationTransactionMessages.SENHA_INVALIDA.toString());
-		}
-		if (transacaoDTO.getValor().compareTo(cartao.get().getSaldo()) == 1) {
-			throw new TransacaoInvalidaException(ValidationTransactionMessages.SALDO_INSUFICIENTE.toString());
-		}
+
+		cartao.map(Cartao::getId).orElseThrow(
+				() -> new TransacaoInvalidaException(ValidationTransactionMessages.CARTAO_INEXISTENTE.toString()));
+
+		cartao.filter(senha -> transacaoDTO.getSenhaCartao().equals(senha.getSenha())).orElseThrow(
+				() -> new TransacaoInvalidaException(ValidationTransactionMessages.SENHA_INVALIDA.toString()));
+
+		cartao.filter(valor -> transacaoDTO.getValor().compareTo(valor.getSaldo()) == 0).orElseThrow(
+				() -> new TransacaoInvalidaException(ValidationTransactionMessages.SALDO_INSUFICIENTE.toString()));
+
+		
 	}
 }
