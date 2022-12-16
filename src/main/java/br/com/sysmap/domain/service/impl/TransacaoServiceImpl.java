@@ -52,7 +52,7 @@ public class TransacaoServiceImpl implements TransacaoService {
 		cartao.filter(senha -> transacaoDTO.getSenhaCartao().equals(senha.getSenha())).orElseThrow(
 				() -> new TransacaoInvalidaException(ValidationTransactionMessages.SENHA_INVALIDA.toString()));
 
-		cartao.filter(valor -> transacaoDTO.getValor().compareTo(valor.getSaldo()) == 0).orElseThrow(
+		cartao.filter(valor -> transacaoDTO.getValor().compareTo(cartao.get().getSaldo()) == -1).orElseThrow(
 				() -> new TransacaoInvalidaException(ValidationTransactionMessages.SALDO_INSUFICIENTE.toString()));
 
 		
